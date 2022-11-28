@@ -8,13 +8,14 @@ services:
       - "27017:27017"
     volumes:
       - ./db/mongod.conf:/etc/mongod.conf
+      - ./db/mongod.conf.orig:/etc/mongod.conf.orig
 
   app:
     container_name: app
     build: ./app
     restart: always
     ports:
-      - "80:3000"
+      - "3000:3000"
     environment:
       - DB_HOST=mongodb://db:27017/posts
     depends_on:
